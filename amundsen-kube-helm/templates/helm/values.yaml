@@ -222,6 +222,10 @@ frontEnd:
   ## frontEnd.OIDC_AUTH_SERVER_ID -- The authorization server id for OIDC.
   ##
   OIDC_AUTH_SERVER_ID:
+  ##
+  ## frontEnd.OIDC_ORG_URL -- The organization URL for OIDC.
+  ##
+  OIDC_GRAPH_URL:
 
   ##
   ## frontEnd.resources -- See pod resourcing [ref](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)
