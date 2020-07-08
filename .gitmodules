@@ -1,19 +1,19 @@
 [submodule "amundsendatabuilder"]
 	path = amundsendatabuilder
-	url = git@github.com:kylg/amundsendatabuilder.git
+	url = https://github.com/kylg/amundsendatabuilder
 	branch = master
 [submodule "amundsenfrontendlibrary"]
 	path = amundsenfrontendlibrary
-	url = git@github.com:kylg/amundsenfrontendlibrary.git
+	url = https://github.com/kylg/amundsenfrontendlibrary
 	branch = master
 [submodule "amundsenmetadatalibrary"]
 	path = amundsenmetadatalibrary
-	url = git@github.com:kylg/amundsenmetadatalibrary.git
+	url = https://github.com/kylg/amundsenmetadatalibrary
 	branch = master
 [submodule "amundsensearchlibrary"]
 	path = amundsensearchlibrary
-	url = git@github.com:kylg/amundsensearchlibrary.git
+	url = https://github.com/kylg/amundsensearchlibrary
 	branch = master
 [submodule "amundsencommon"]
 	path = amundsencommon
-	url = git@github.com:kylg/amundsencommon.git
+	url = https://github.com/kylg/amundsencommon

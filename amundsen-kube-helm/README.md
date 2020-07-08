@@ -47,7 +47,7 @@ The following table lists the configurable parameters of the Amundsen charts and
 | frontEnd.annotations | object | `{}` | Frontend service specific tolerations. |
 | frontEnd.baseUrl | string | `"http://localhost"` | used by notifications util to provide links to amundsen pages in emails. |
 | frontEnd.createOidcSecret | bool | `false` | OIDC needs some configuration. If you want the chart to make your secrets, set this to true and set the next four values. If you don't want to configure your secrets via helm, you can still use the amundsen-oidc-config.yaml as a template |
-| frontEnd.image | string | `"amundsendev/amundsen-frontend"` | The image of the frontend container. |
+| frontEnd.image | string | `"kylg/amundsen-frontend"` | The image of the frontend container. |
 | frontEnd.imageTag | string | `"2.0.0"` | The image tag of the frontend container. |
 | frontEnd.nodeSelector | object | `{}` | Frontend pod specific nodeSelector. |
 | frontEnd.oidcEnabled | bool | `false` | To enable auth via OIDC, set this to true. |
@@ -60,7 +60,7 @@ The following table lists the configurable parameters of the Amundsen charts and
 | frontEnd.tolerations | list | `[]` | Frontend pod specific tolerations. |
 | metadata.affinity | object | `{}` | Metadata pod specific affinity. |
 | metadata.annotations | object | `{}` | Metadata service specific tolerations. |
-| metadata.image | string | `"amundsendev/amundsen-metadata"` | The image of the metadata container. |
+| metadata.image | string | `"kylg/amundsen-metadata"` | The image of the metadata container. |
 | metadata.imageTag | string | `"2.0.0"` | The image tag of the metadata container. |
 | metadata.neo4jEndpoint | string | `nil` | The name of the service hosting neo4j on your cluster, if you bring your own. You should only need to change this, if you don't use the version in this chart. |
 | metadata.nodeSelector | object | `{}` | Metadata pod specific nodeSelector. |
@@ -93,7 +93,7 @@ The following table lists the configurable parameters of the Amundsen charts and
 | search.affinity | object | `{}` | Search pod specific affinity. |
 | search.annotations | object | `{}` | Search service specific tolerations. |
 | search.elasticsearchEndpoint | string | `nil` | The name of the service hosting elasticsearch on your cluster, if you bring your own. You should only need to change this, if you don't use the version in this chart. |
-| search.image | string | `"amundsendev/amundsen-search"` | The image of the search container. |
+| search.image | string | `"kylg/amundsen-search"` | The image of the search container. |
 | search.imageTag | string | `"2.0.0"` | The image tag of the search container. |
 | search.nodeSelector | object | `{}` | Search pod specific nodeSelector. |
 | search.podAnnotations | object | `{}` | Search pod specific annotations. |

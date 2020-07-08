@@ -23,13 +23,13 @@ Amundsen is a metadata driven application for improving the productivity of data
 
 It includes three microservices, one data ingestion library and one common library.
 
-- [amundsenfrontendlibrary](https://github.com/lyft/amundsenfrontendlibrary#amundsen-frontend-service): Frontend service which is a Flask application with a React frontend.
-- [amundsensearchlibrary](https://github.com/lyft/amundsensearchlibrary#amundsen-search-service): Search service, which leverages Elasticsearch for search capabilities, is used to power frontend metadata searching.
-- [amundsenmetadatalibrary](https://github.com/lyft/amundsenmetadatalibrary#amundsen-metadata-service): Metadata service, which leverages Neo4j or Apache Atlas as the persistent layer, to provide various metadata.
-- [amundsendatabuilder](https://github.com/lyft/amundsendatabuilder#amundsen-databuilder): Data ingestion library for building metadata graph and search index.
-Users could either load the data with [a python script](https://github.com/lyft/amundsendatabuilder/blob/master/example/scripts/sample_data_loader.py) with the library
-or with an [Airflow DAG](https://github.com/lyft/amundsendatabuilder/tree/master/example/dags) importing the library.
-- [amundsencommon](https://github.com/lyft/amundsencommon): Amundsen Common library holds common codes among microservices in Amundsen.
+- [amundsenfrontendlibrary](https://github.com/kylg/amundsenfrontendlibrary#amundsen-frontend-service): Frontend service which is a Flask application with a React frontend.
+- [amundsensearchlibrary](https://github.com/kylg/amundsensearchlibrary#amundsen-search-service): Search service, which leverages Elasticsearch for search capabilities, is used to power frontend metadata searching.
+- [amundsenmetadatalibrary](https://github.com/kylg/amundsenmetadatalibrary#amundsen-metadata-service): Metadata service, which leverages Neo4j or Apache Atlas as the persistent layer, to provide various metadata.
+- [amundsendatabuilder](https://github.com/kylg/amundsendatabuilder#amundsen-databuilder): Data ingestion library for building metadata graph and search index.
+Users could either load the data with [a python script](https://github.com/kylg/amundsendatabuilder/blob/master/example/scripts/sample_data_loader.py) with the library
+or with an [Airflow DAG](https://github.com/kylg/amundsendatabuilder/tree/master/example/dags) importing the library.
+- [amundsencommon](https://github.com/kylg/amundsencommon): Amundsen Common library holds common codes among microservices in Amundsen.
 
 ## Documentation
 - https://lyft.github.io/amundsen/

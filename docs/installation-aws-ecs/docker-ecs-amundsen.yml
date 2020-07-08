@@ -43,7 +43,7 @@ services:
           awslogs-stream-prefix: amundsen-elasticsearch
 
   amundsensearch:
-      image: amundsendev/amundsen-search:1.1.1
+      image: kylg/amundsen-search:1.1.1
       container_name: amundsensearch
       ports:
         - 5001:5000
@@ -59,7 +59,7 @@ services:
           awslogs-stream-prefix: amundsensearch
 
   amundsenmetadata:
-      image: amundsendev/amundsen-metadata:1.0.7
+      image: kylg/amundsen-metadata:1.0.7
       container_name: amundsenmetadata
       depends_on:
         - neo4j
@@ -75,7 +75,7 @@ services:
           awslogs-stream-prefix: amundsenmetadata
 
   amundsenfrontend:
-      image: amundsendev/amundsen-frontend:1.0.5
+      image: kylg/amundsen-frontend:1.0.5
       container_name: amundsenfrontend
       depends_on:
         - amundsenmetadata

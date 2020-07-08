@@ -66,7 +66,7 @@ REQUEST_HEADERS_METHOD = get_access_headers
 ```
 
 This function will be called using the current `app` instance to add the headers in each request when calling any endpoint of
-metadatalibrary and searchlibrary [here](https://github.com/lyft/amundsenfrontendlibrary/blob/master/amundsen_application/api/utils/request_utils.py)
+metadatalibrary and searchlibrary [here](https://github.com/kylg/amundsenfrontendlibrary/blob/master/amundsen_application/api/utils/request_utils.py)
 
 ## Setting Up Auth User Method
 In order to get the current authenticated user (which is being used in Amundsen for many operations), we need to set

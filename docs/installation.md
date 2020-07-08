@@ -18,7 +18,7 @@ The following instructions are for setting up a version of Amundsen using Docker
     ```
 4. Ingest dummy data into Neo4j by doing the following: _(Please skip if you are using Atlas backend)_
 
-   * Change directory to the [amundsendatabuilder](https://github.com/lyft/amundsendatabuilder) submodule.
+   * Change directory to the [amundsendatabuilder](https://github.com/kylg/amundsendatabuilder) submodule.
    * Run the following commands in the `amundsendatabuilder` upstream directory:
    ```bash
     $ python3 -m venv venv

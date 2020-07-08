@@ -68,7 +68,7 @@ rm -rf .local/neo4j
 
 ### Testing Amundsen frontend locally
 
-Amundsen has an instruction regarding local frontend launch [here](https://github.com/lyft/amundsenfrontendlibrary/blob/master/docs/installation.md)
+Amundsen has an instruction regarding local frontend launch [here](https://github.com/kylg/amundsenfrontendlibrary/blob/master/docs/installation.md)
 
 Here are some additional changes you might need for windows (OS Win 10):
 
@@ -110,7 +110,7 @@ the amundsenfrontend image point to the hash of the image that you built
 
 ```yaml
   amundsenfrontend:
-      #image: amundsendev/amundsen-frontend:1.0.9
+      #image: kylg/amundsen-frontend:1.0.9
       #image: 1234.dkr.ecr.us-west-2.amazonaws.com/edmunds/amundsen-frontend:2020-01-21
       image: 0312d0ac3938
 ```
@@ -249,7 +249,7 @@ First fill this two environment variables: `NEO4J_ENDPOINT` , `CREDENTIALS_NEO4J
 
 
 #### Standup Search service
-Follow this [instruction](https://github.com/lyft/amundsensearchlibrary#instructions-to-start-the-search-service-from-source)
+Follow this [instruction](https://github.com/kylg/amundsensearchlibrary#instructions-to-start-the-search-service-from-source)
 
 Test the search API with this command:
 
