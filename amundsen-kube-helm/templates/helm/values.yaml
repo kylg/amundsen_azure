@@ -124,7 +124,7 @@ metadata:
   ##
   ## metadata.image -- The image of the metadata container.
   ##
-  image: kylg/amundsen-metadata-oidc
+  image: kylg/amundsen-metadata
   ##
   ## metadata.imageTag -- The image tag of the metadata container.
   ##
@@ -180,7 +180,7 @@ frontEnd:
   ##
   ## frontEnd.image -- The image of the frontend container.
   ##
-  image: kylg/amundsen-frontend-oidc
+  image: kylg/amundsen-frontend
   ##
   ## frontEnd.imageTag -- The image tag of the frontend container.
   ##
@@ -200,7 +200,7 @@ frontEnd:
   ##
   ## frontEnd.oidcEnabled -- To enable auth via OIDC, set this to true.
   ##
-  oidcEnabled: true
+  oidcEnabled: false
   ##
   ## frontEnd.createOidcSecret -- OIDC needs some configuration. If you want the chart to make your secrets, set this to true and set the next four values. If you don't want to configure your secrets via helm, you can still use the amundsen-oidc-config.yaml as a template
   ##
