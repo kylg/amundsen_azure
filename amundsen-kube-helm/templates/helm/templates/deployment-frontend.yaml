@@ -64,11 +64,11 @@ spec:
           - name: FRONTEND_SVC_CONFIG_MODULE_CLASS
             value: amundsen_application.oidc_config.OidcConfig
           - name: FLASK_OIDC_WHITELISTED_ENDPOINTS
-            value: status,healthcheck,health
+            value: login,authorized,status,healthcheck,health
           - name: FLASK_OIDC_SQLALCHEMY_DATABASE_URI
             value: sqlite:///sessions.db
           - name: APP_WRAPPER
-            value: flaskoidc
+            value: flaskoidc_azure
           - name: APP_WRAPPER_CLASS
             value: FlaskOIDC
           - name: FLASK_OIDC_CLIENT_SECRETS
