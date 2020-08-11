@@ -39,12 +39,6 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
       {{- end }}
-      volumes:
-      {{- if .Values.frontEnd.oidcEnabled }}
-        - name: oidc-config
-          secret:
-            secretName: oidc-config
-      {{- end }}
       containers:
       - name: {{ .Chart.Name }}-{{ .Values.frontEnd.serviceName }}
         image: {{ .Values.frontEnd.image }}:{{ .Values.frontEnd.imageTag }}
@@ -95,8 +89,8 @@ spec:
           - mountPath: /app/ssl_cert/gds-amundsen-test.int.electrolux.com.key
             name: objectstore-key
         {{- if .Values.frontEnd.oidcEnabled }}
-          - name: oidc-config
-            mountPath: /etc/client_secrets.json
+          - mountPath: /etc/client_secrets.json
+            name: oidc-config
             subPath: client_secrets.json
         {{- end }}
         {{- with .Values.metadata.resources }}
@@ -104,6 +98,11 @@ spec:
 {{ toYaml . | indent 10 }}
         {{- end }}
       volumes:
+        {{- if .Values.frontEnd.oidcEnabled }}
+        - name: oidc-config
+          secret:
+            secretName: oidc-config
+        {{- end }}
         - name: objectstore-cert
           secret:
             secretName: objectstore-cert
