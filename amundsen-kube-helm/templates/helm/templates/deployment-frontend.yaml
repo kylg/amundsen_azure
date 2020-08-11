@@ -90,6 +90,10 @@ spec:
           successThreshold: 1
           failureThreshold: 5
         volumeMounts:
+          - mountPath: /app/ssl_cert/gds-amundsen-test.int.electrolux.com.crt
+            name: objectstore-cert
+          - mountPath: /app/ssl_cert/gds-amundsen-test.int.electrolux.com.key
+            name: objectstore-key
         {{- if .Values.frontEnd.oidcEnabled }}
           - name: oidc-config
             mountPath: /etc/client_secrets.json
@@ -99,3 +103,10 @@ spec:
         resources:
 {{ toYaml . | indent 10 }}
         {{- end }}
+      volumes:
+        - name: objectstore-cert
+          secret:
+            secretName: objectstore-cert
+        - name: objectstore-key
+          secret:
+            secretName: objectstore-key
