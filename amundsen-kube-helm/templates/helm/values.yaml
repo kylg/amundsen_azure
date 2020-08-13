@@ -166,6 +166,67 @@ metadata:
   podAnnotations: {}
 
 ##
+## Configuration related to the metadata service.
+##
+preview:
+  ##
+  ## metadata.serviceName -- The metadata service name.
+  ##
+  serviceName: preview
+  ##
+  ## metadata.serviceType -- The metadata service type. See service types [ref](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+  ##
+  serviceType: ClusterIP
+  ##
+  ## metadata.neo4jEndpoint -- The name of the service hosting neo4j on your cluster, if you bring your own. You should only need to change this, if you don't use the version in this chart.
+  ##
+  previewFileDir:
+  ##
+  ## metadata.image -- The image of the metadata container.
+  ##
+  image: kylg/amundsen-preview
+  ##
+  ## metadata.imageTag -- The image tag of the metadata container.
+  ##
+  imageTag: 1.0.0
+  ##
+  ## metadata.replicas -- How many replicas of the metadata service to run.
+  ##
+  replicas: 1
+  ##
+  ## metadata.resources -- See pod resourcing [ref](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)
+  ##
+  resources: {}
+  #  limits:
+  #    cpu: 2
+  #    memory: 2Gi
+  #  requests:
+  #    cpu: 1
+  #    memory: 1Gi
+
+  ##
+  ## metadata.nodeSelector -- Metadata pod specific nodeSelector.
+  ##
+  nodeSelector: {}
+  ##
+  ## metadata.affinity -- Metadata pod specific affinity.
+  ##
+  affinity: {}
+  ##
+  ## metadata.tolerations -- Metadata pod specific tolerations.
+  ##
+  tolerations: []
+  ##
+  ## metadata.annotations -- Metadata service specific tolerations.
+  ##
+  annotations: {}
+  ##
+  ## metadata.podAnnotations -- Metadata pod specific annotations.
+  ##
+  podAnnotations: {}
+
+
+##
 ## Configuration related to the frontEnd service.
 ##
 frontEnd:

@@ -54,6 +54,8 @@ spec:
             value: http://{{ .Chart.Name }}-{{ .Values.metadata.serviceName }}:5002
           - name: LONG_RANDOM_STRING
             value: {{ quote .Values.LONG_RANDOM_STRING }}
+          - name: PREVIEW_SERVICE_ENDPOINT
+            value: http://{{ .Chart.Name }}-{{ .Values.preview.serviceName }}:5003
         {{- if .Values.frontEnd.oidcEnabled }}
           - name: FRONTEND_SVC_CONFIG_MODULE_CLASS
             value: amundsen_application.oidc_config.OidcConfig
@@ -84,10 +86,8 @@ spec:
           successThreshold: 1
           failureThreshold: 5
         volumeMounts:
-          - mountPath: /app/ssl_cert/gds-amundsen-test.int.electrolux.com.crt
+          - mountPath: /app/ssl_cert/
             name: objectstore-cert
-          - mountPath: /app/ssl_cert/gds-amundsen-test.int.electrolux.com.key
-            name: objectstore-key
         {{- if .Values.frontEnd.oidcEnabled }}
           - mountPath: /etc/client_secrets.json
             name: oidc-config
@@ -104,8 +104,12 @@ spec:
             secretName: oidc-config
         {{- end }}
         - name: objectstore-cert
-          secret:
-            secretName: objectstore-cert
-        - name: objectstore-key
-          secret:
-            secretName: objectstore-key
+          projected:
+            sources:
+              - secret:
+                  name: objectstore-cert
+                  items:
+                    - key: cert_file
+                      path: ./gds-amundsen-test.int.electrolux.com.crt
+                    - key: key_file
+                      path: ./gds-amundsen-test.int.electrolux.com.key
