@@ -1,0 +1,26 @@
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "amundsen.name" . }}-{{ .Values.preview.serviceName }}
+  labels:
+    app: {{ template "amundsen.name" . }}
+    run: {{ .Chart.Name }}-{{ .Values.preview.serviceName }}
+    component: {{ .Values.preview.serviceName }}
+    chart: {{ template "amundsen.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- with .Values.preview.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end}}           
+spec:
+  type: {{ .Values.preview.serviceType }}
+  selector:
+    app: {{ template "amundsen.name" . }}
+    component: {{ .Values.preview.serviceName }}
+    release: {{ .Release.Name }}
+  ports:
+    - name: {{ .Chart.Name }}-{{ .Values.preview.serviceName }}-{{ .Values.environment }}-http
+      port: 5003
+      targetPort: 5003
