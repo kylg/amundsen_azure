@@ -10,10 +10,11 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ default "ReadWriteOnce" .Values.neo4j.persistence.accessMode }}
+  storageClassName: "{{ default "" .Values.neo4j.persistence.storageClass }}"
   capacity:
     storage: {{ default "3Gi" .Values.neo4j.persistence.size }}
   nfs:
     server: {{ .Values.neo4j.persistence.efs.dns }}
-    path: "/"
+    path: {{ .Values.neo4j.persistence.efs.path }}
 {{- end }}
