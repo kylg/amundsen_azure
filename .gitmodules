@@ -19,4 +19,4 @@
 	url = https://github.com/kylg/amundsencommon
 [submodule "amundsenpreviewlibrary"]
 	path = amundsenpreviewlibrary
-	url = https://github.com/kylg/amundsenpreviewlibrary.git
+	url = https://github.com/kylg/amundsenpreviewlibrary
