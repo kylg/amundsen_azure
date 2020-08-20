@@ -17,6 +17,8 @@
 [submodule "amundsencommon"]
 	path = amundsencommon
 	url = https://github.com/kylg/amundsencommon
+	branch = master
 [submodule "amundsenpreviewlibrary"]
 	path = amundsenpreviewlibrary
 	url = https://github.com/kylg/amundsenpreviewlibrary
+	branch = master
