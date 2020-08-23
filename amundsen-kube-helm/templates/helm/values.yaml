@@ -266,6 +266,14 @@ frontEnd:
   ## frontEnd.createOidcSecret -- OIDC needs some configuration. If you want the chart to make your secrets, set this to true and set the next four values. If you don't want to configure your secrets via helm, you can still use the amundsen-oidc-config.yaml as a template
   ##
   createOidcSecret: false
+  ##
+  ## frontEnd.OIDC_AUTH_SERVER_ID -- The authorization server id for OIDC.
+  ##
+  adminName: Jerry
+  ##
+  ## frontEnd.OIDC_ORG_URL -- The organization URL for OIDC.
+  ##
+  adminUrl: mailto:info@kylg.org
 
   ##
   ## frontEnd.OIDC_CLIENT_ID -- The client id for OIDC.

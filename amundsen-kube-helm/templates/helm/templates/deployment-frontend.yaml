@@ -57,6 +57,10 @@ spec:
           - name: PREVIEW_SERVICE_ENDPOINT
             value: http://{{ .Chart.Name }}-{{ .Values.preview.serviceName }}:5003/preview_data
         {{- if .Values.frontEnd.oidcEnabled }}
+          - name: ADMIN_NAME
+            value: {{ .Values.frontEnd.adminName }}
+          - name: ADMIN_URL
+            value: {{ .Values.frontEnd.adminUrl }}
           - name: FRONTEND_SVC_CONFIG_MODULE_CLASS
             value: amundsen_application.oidc_config.OidcConfig
           - name: FLASK_OIDC_WHITELISTED_ENDPOINTS
