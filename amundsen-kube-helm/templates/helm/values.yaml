@@ -267,11 +267,11 @@ frontEnd:
   ##
   createOidcSecret: false
   ##
-  ## frontEnd.OIDC_AUTH_SERVER_ID -- The authorization server id for OIDC.
+  ## frontEnd.adminName -- The name will be displayed on the interface.
   ##
   adminName: Jerry
   ##
-  ## frontEnd.OIDC_ORG_URL -- The organization URL for OIDC.
+  ## frontEnd.adminUrl -- Used when users need to apply for permissions.
   ##
   adminUrl: mailto:info@kylg.org
 
