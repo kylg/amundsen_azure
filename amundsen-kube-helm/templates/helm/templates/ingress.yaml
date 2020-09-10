@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "amundsen.fullname" . }}-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+      - gds-amundsen-test.int.electrolux.com
+      # This secret must exist beforehand
+      # The cert must also contain the subj-name foo.bar.com
+      # https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#tls-certificates
+      secretName: amundsen-frontend-tls
+  rules:
+    - host: gds-amundsen-test.int.electrolux.com
+      http:
+        paths:
+          - backend:
+              serviceName: {{ template "amundsen.name" . }}-{{ .Values.frontEnd.serviceName }}
+              servicePort: 5000
+            path: /
+          - backend:
+              serviceName: neo4j
+              servicePort: 7474
+            path: /neo4j
+          - backend:
+              serviceName: {{ template "amundsen.fullname" . }}-elasticsearch-client
+              servicePort: 9200
+            path: /elasticsearch

@@ -83,15 +83,15 @@ spec:
           httpGet:
             path: "/healthcheck"
             port: 5000
-            scheme: HTTPS
+            scheme: HTTP
           initialDelaySeconds: 60
           periodSeconds: 60
           timeoutSeconds: 1
           successThreshold: 1
           failureThreshold: 5
         volumeMounts:
-          - mountPath: /app/ssl_cert/
-            name: objectstore-cert
+#          - mountPath: /app/ssl_cert/
+#            name: amundsen-frontend-tls
         {{- if .Values.frontEnd.oidcEnabled }}
           - mountPath: /etc/client_secrets.json
             name: oidc-config
@@ -107,13 +107,6 @@ spec:
           secret:
             secretName: oidc-config
         {{- end }}
-        - name: objectstore-cert
-          projected:
-            sources:
-              - secret:
-                  name: objectstore-cert
-                  items:
-                    - key: cert_file
-                      path: ./gds-amundsen-test.int.electrolux.com.crt
-                    - key: key_file
-                      path: ./gds-amundsen-test.int.electrolux.com.key
+#        - name: amundsen-frontend-tls
+#          secret:
+#            secretName: amundsen-frontend-tls

@@ -1,0 +1,45 @@
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: restore-neo4j-azure-from-latest
+      annotations:
+        fill_in_here_with_correct_key: fill_in_here_with_correct_value
+    spec:
+      containers:
+      - name: restore-neo4j-azure-from-latest
+        image: neo4j:3.3.0
+        command:
+         - "/bin/sh"
+         - "-c"
+         - |
+            apk -v --update add --no-cache --quiet curl python3 py3-pip &&
+            apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make &&
+            pip3 install azure-cli -q
+            az login --service-principal -u $CLIENT_ID -p $CREDENTIAL --tenant $TENANT --allow-no-subscriptions
+            latest_backup=$(az dls fs list --account $ACCOUNT --path "$BUCKET" --query "reverse(sort_by([?type=='FILE'], &modificationTime))[0].pathSuffix" --output tsv)
+            az dls fs download --account $ACCOUNT --destination-path /tmp --overwrite --source-path $BUCKET/$latest_backup
+            az logout
+            tar -xf /tmp/$latest_backup -C /
+            data_file=`ls /data|grep \.data`
+            schema_file=`ls /data|grep \.schema`
+            ./bin/neo4j-shell -host neo4j -file /data/$schema_file
+            echo "CALL apoc.import.graphml('/data/$data_file', {useTypes: true, readLabels: true});" | /var/lib/neo4j/bin/neo4j-shell -host neo4j
+        env:
+          - name: CLIENT_ID
+            value: {{ .Values.neo4j.backup.clientid }}
+          - name: CREDENTIAL
+            value: {{ .Values.neo4j.backup.credential }}
+          - name: TENANT
+            value: {{ .Values.neo4j.backup.tenant }}
+          - name: ACCOUNT
+            value: {{ .Values.neo4j.backup.account }}
+          - name: BUCKET
+            value: {{ .Values.neo4j.backup.s3Path }}
+        volumeMounts:
+          - name: data
+            mountPath: /data
+      restartPolicy: OnFailure
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: neo4j-pvc

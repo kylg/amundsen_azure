@@ -69,6 +69,8 @@ spec:
         env:
           - name: NEO4J_CONF
             value: "/conf"
+          - name: NEO4J_AUTH
+            value: "{{ .Values.neo4j.config.neo4jAuth }}"
         volumeMounts:
         - name: conf
           mountPath: /conf

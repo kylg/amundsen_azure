@@ -170,31 +170,31 @@ metadata:
 ##
 preview:
   ##
-  ## metadata.serviceName -- The metadata service name.
+  ## preview.serviceName -- The preview service name.
   ##
   serviceName: preview
   ##
-  ## metadata.serviceType -- The metadata service type. See service types [ref](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+  ## preview.serviceType -- The preview service type. See service types [ref](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
   ##
   serviceType: ClusterIP
   ##
-  ## metadata.neo4jEndpoint -- The name of the service hosting neo4j on your cluster, if you bring your own. You should only need to change this, if you don't use the version in this chart.
+  ## preview.previewFileDir -- The folder which preview files be saved.
   ##
   previewFileDir:
   ##
-  ## metadata.image -- The image of the metadata container.
+  ## preview.image -- The image of the preview container.
   ##
   image: kylg/amundsen-preview
   ##
-  ## metadata.imageTag -- The image tag of the metadata container.
+  ## preview.imageTag -- The image tag of the preview container.
   ##
   imageTag: 1.0.0
   ##
-  ## metadata.replicas -- How many replicas of the metadata service to run.
+  ## preview.replicas -- How many replicas of the preview service to run.
   ##
   replicas: 1
   ##
-  ## metadata.resources -- See pod resourcing [ref](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)
+  ## preview.resources -- See pod resourcing [ref](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)
   ##
   resources: {}
   #  limits:
@@ -203,6 +203,16 @@ preview:
   #  requests:
   #    cpu: 1
   #    memory: 1Gi
+
+  ##
+  ## preview.persistence -- preview persistence. Turn this on to keep your data between pod crashes, etc.
+  ##
+  persistence: {}
+  #  storageClass: gp2
+  #  size: 10Gi
+  #  accessMode: ReadWriteMany
+  #  efs:
+  #    dns:
 
   ##
   ## metadata.nodeSelector -- Metadata pod specific nodeSelector.
@@ -340,6 +350,10 @@ neo4j:
   ## neo4j.version -- The neo4j application version used by amundsen.
   ##
   version: 3.3.0
+  ##
+  ## neo4j.serviceType -- The neo4j service type. See service types [ref](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+  ##
+  serviceType: ClusterIP
 
   ##
   ## neo4j.resources -- See pod resourcing [ref](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)
@@ -367,6 +381,8 @@ neo4j:
       heap_max_size: 2G
       ## neo4j.config.dbms.pagecache_size -- the page cache size for neo4j
       pagecache_size: 2G
+    # initial User and password for authentication
+    neo4jAuth: none
 
   ##
   ## neo4j.persistence -- Neo4j persistence. Turn this on to keep your data between pod crashes, etc. This is also needed for backups.
@@ -392,6 +408,13 @@ neo4j:
     ## neo4j.backup.schedule -- The schedule to run backups on. Defaults to hourly.
     ##
     schedule: "0 * * * *"
+    ##
+    ## neo4j.backup.credential -- The credentials to login azure.
+    ##
+    clientid:
+    credential:
+    tenant: "electrolux365.onmicrosoft.com"  # "electrolux.onmicrosoft.com"
+    account: "elxa2dtl001"  # "elxa2dls001"
     podAnnotations: {}
 
   ##

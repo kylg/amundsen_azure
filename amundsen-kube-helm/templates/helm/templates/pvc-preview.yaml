@@ -1,0 +1,19 @@
+{{- if .Values.preview.persistence }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: preview-pvc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "amundsen.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - {{ default "ReadWriteOnce" .Values.preview.persistence.accessMode }}
+  storageClassName: "{{ default "" .Values.preview.persistence.storageClass }}"
+  resources:
+    requests:
+      storage: {{ default "3Gi" .Values.preview.persistence.size }}
+{{- end }}
