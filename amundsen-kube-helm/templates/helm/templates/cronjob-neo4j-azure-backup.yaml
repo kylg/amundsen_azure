@@ -36,7 +36,7 @@ spec:
               apk -v --update add --no-cache --quiet curl python3 py3-pip &&
               apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make &&
               pip3 install azure-cli -q &&
-              NOW="$(date "+%Y-%m-%d-%H:%M:%S")" &&
+              NOW="$(date "+%Y-%m-%d-%H-%M-%S")" &&
               BACKUP_SCHEMA_NAME="graph.db-backup-$NOW.schema" &&
               BACKUP_DATA_NAME="graph.db-backup-$NOW.data" &&
               BACKUP_NAME="graph.db-backup-$NOW" &&
@@ -49,7 +49,7 @@ spec:
               gzip -9 "/data/$BACKUP_NAME.tar" &&
               printf "Pushing /data/$BACKUP_NAME.tar.gz -> $BUCKET" &&
               az login --service-principal -u $CLIENT_ID -p $CREDENTIAL --tenant $TENANT --allow-no-subscriptions &&
-              az dls fs upload --account $ACCOUNT --destination-path "$BUCKET" --overwrite --source-path "/data/$BACKUP_NAME.tar.gz" &&
+              az dls fs upload --account $ACCOUNT --destination-path "$BUCKET/$BACKUP_NAME.tar.gz" --overwrite --source-path "/data/$BACKUP_NAME.tar.gz" &&
               az logout &&
               printf "Cleaning up /data/graph.db-backup*" &&
               rm /data/graph.db-backup*
