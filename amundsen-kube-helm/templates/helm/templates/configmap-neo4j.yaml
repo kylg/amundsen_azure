@@ -11,6 +11,10 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
+  7473: "{{ .Release.Namespace }}/neo4j:7473"
+  7474: "{{ .Release.Namespace }}/neo4j:7474"
+  7687: "{{ .Release.Namespace }}/neo4j:7687"
+  1337: "{{ .Release.Namespace }}/neo4j:1337"
   neo4j.conf: |-
     apoc.import.file.enabled=true
     cypher.forbid_shortestpath_common_nodes=false

@@ -24,6 +24,10 @@ spec:
               servicePort: 5000
             path: /
           - backend:
+              serviceName: amundsen-preview
+              servicePort: 5003
+            path: /preview
+          - backend:
               serviceName: neo4j
               servicePort: 7474
             path: /neo4j
