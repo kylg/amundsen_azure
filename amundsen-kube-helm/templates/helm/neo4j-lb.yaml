@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neo4j-lb
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    app: amundsen
+    component: neo4j
+  ports:
+    - port: 7687
+      protocol: TCP
+      name: bolt-port
+      targetPort: 7687
+    - port: 7474
+      protocol: TCP
+      name: other-port
+      targetPort: 7474
+  type: LoadBalancer

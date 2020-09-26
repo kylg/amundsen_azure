@@ -5,8 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:
   tls:
     - hosts:
@@ -19,19 +20,20 @@ spec:
     - host: gds-amundsen-test.int.electrolux.com
       http:
         paths:
-          - backend:
+          - path: /(.*)
+            backend:
               serviceName: {{ template "amundsen.name" . }}-{{ .Values.frontEnd.serviceName }}
               servicePort: 5000
-            path: /
-          - backend:
+          - path: /preview/(.*)
+            backend:
               serviceName: amundsen-preview
               servicePort: 5003
-            path: /preview
-          - backend:
+          - path: /neo4j/(.*)
+            backend:
               serviceName: neo4j
               servicePort: 7474
-            path: /neo4j
-          - backend:
+
+          - path: /elasticsearch/(.*)
+            backend:
               serviceName: {{ template "amundsen.fullname" . }}-elasticsearch-client
               servicePort: 9200
-            path: /elasticsearch
