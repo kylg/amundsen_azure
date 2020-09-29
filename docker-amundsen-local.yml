@@ -29,7 +29,7 @@ services:
           soft: 65536
           hard: 65536
       volumes:
-        - ./example/docker/elasticsearch:/usr/share/elasticsearch/data
+        - ./.local/elasticsearch/data:/usr/share/elasticsearch/data
   amundsensearch:
       build:
         context: ./amundsensearchlibrary
@@ -66,7 +66,7 @@ services:
     networks:
       - amundsennet
     volumes:
-      - ./example/docker/preview:/var/amundsen/preview_data
+      - ./.local/preview:/var/amundsen/preview_data
   amundsenfrontend:
       build:
         context: ./amundsenfrontendlibrary
