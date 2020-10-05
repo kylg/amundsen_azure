@@ -64,11 +64,11 @@ spec:
                 value: {{ .Values.neo4j.backup.account }}
               - name: BUCKET
                 value: {{ .Values.neo4j.backup.s3Path }}
-            volumeMounts:
-                - name: data
-                  mountPath: /data
-          volumes:
-          - name: data
-            persistentVolumeClaim:
-              claimName: neo4j-pvc
+{{/*            volumeMounts:*/}}
+{{/*                - name: data*/}}
+{{/*                  mountPath: /data*/}}
+{{/*          volumes:*/}}
+{{/*          - name: data*/}}
+{{/*            persistentVolumeClaim:*/}}
+{{/*              claimName: neo4j-pvc*/}}
 {{- end}}
