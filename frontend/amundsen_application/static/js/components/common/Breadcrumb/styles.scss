@@ -1,0 +1,16 @@
+@import 'variables';
+
+.amundsen-breadcrumb {
+  display: inline-block;
+  height: 24px;
+
+  img.icon-left {
+    margin: -3px 0 -3px -8px;
+  }
+
+  span {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+  }
+}
